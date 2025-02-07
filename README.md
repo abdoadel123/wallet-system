@@ -33,14 +33,56 @@ $ docker compose up -d
 
 and create database "wallet-system"
 
-4- run database migration to create tables
+4- add .env file and copy variables from .env.example
+
+5- set database user name and password
+
+6- run database migration to create tables
 
 ```bash
 $ npm run m:run
 ```
 
-5- start app
+7- start app
 
 ```bash
 $ npm run start
+```
+
+## Example CURL requests
+
+1- create user
+
+```
+curl --location 'localhost:8080/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"test",
+    "email":"test@gmail.com",
+    "birthDate":"1994-11-25"
+}'
+```
+
+2- Top Up
+
+```
+curl --location 'localhost:8080/api/users/{id}/top-up' \
+--header 'Content-Type: application/json' \
+--data '{
+    "reference":"1234",
+    "amount":2.33
+}'
+
+```
+
+2- Charge
+
+```
+curl --location 'localhost:8080/api/users/{id}/charge' \
+--header 'Content-Type: application/json' \
+--data '{
+    "reference":"12345",
+    "amount":2.33
+}'
+
 ```
