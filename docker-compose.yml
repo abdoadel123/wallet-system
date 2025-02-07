@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+  local:
+    driver: bridge
+
+name: development
+
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+    networks:
+      - local
+    restart: unless-stopped
